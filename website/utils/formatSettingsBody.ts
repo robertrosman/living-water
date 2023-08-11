@@ -10,6 +10,7 @@ export function formatSettingsBody(settings: Settings) {
     const wateringHourNow = settings.wateringHours.includes(parseInt(hour));
     return {
       now,
+      timestamp: now.getTime(),
       hour: parseInt(hour),
       wateringHourNow,
       ...settings
