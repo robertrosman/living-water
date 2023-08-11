@@ -1,0 +1,23 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "concurrently \"npm run dynamodb\" \"nuxt dev\"",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "dynamodb": "docker run -p 8000:8000 amazon/dynamodb-local"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@types/node": "^18.17.3",
+    "concurrently": "^8.2.0",
+    "nuxt": "^3.6.5"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.388.0",
+    "@aws-sdk/lib-dynamodb": "^3.388.0",
+    "zod": "^3.21.4"
+  }
+}
