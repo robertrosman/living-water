@@ -1,8 +1,7 @@
-import { settingsSchema } from "../../../schemas/settings"
-import { deleteSettings } from "../../../utils/database"
+import { SettingsModel } from "../../../database/Settings"
 
 export default defineEventHandler(async event => {
   const { id } = await getRouterParams(event)
-  settingsSchema.shape.id.parse(id)
-  return deleteSettings(id)
+  await SettingsModel.delete(id)
+  return `Deleted ${id}`
 })

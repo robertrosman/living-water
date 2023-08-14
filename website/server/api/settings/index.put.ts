@@ -1,8 +1,11 @@
-import { settingsSchema } from "../../../schemas/settings"
-import { editSettings } from "../../../utils/database"
+import { SettingsModel } from "../../../database/Settings"
 
 export default defineEventHandler(async event => {
   const settings = await readBody(event)
-  settingsSchema.parse(settings)
-  return editSettings(settings)
+  if (settings.id) {
+    return SettingsModel.update(settings)
+  }
+  else {
+    return SettingsModel.create(settings)
+  }
 })

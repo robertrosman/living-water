@@ -1,17 +1,17 @@
-import { Settings } from "../schemas/settings";
+import { Settings } from "../database/Settings";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc"
+import timezone from "dayjs/plugin/timezone"
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 export function formatSettingsBody(settings: Settings) {
-    const now = new Date();
-    const hour = now.toLocaleString('en-US', { 
-      timeZone: 'Europe/Stockholm', 
-      hour12: false, 
-      hour: 'numeric'
-    });
-    const wateringHourNow = settings.wateringHours.includes(parseInt(hour));
+  const now = dayjs().tz("Europe/Stockholm")
+    const wateringHourNow = settings.wateringHours.includes(now.hour());
     return {
       now,
-      timestamp: now.getTime(),
-      hour: parseInt(hour),
+      timestamp: now.unix(),
+      hour: now.hour(),
       wateringHourNow,
       ...settings
     }

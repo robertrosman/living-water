@@ -18,6 +18,8 @@
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.388.0",
     "@aws-sdk/lib-dynamodb": "^3.388.0",
-    "zod": "^3.21.4"
+    "dayjs": "^1.11.9",
+    "dynamoose": "^3.2.0",
+    "nanoid": "^4.0.2"
   }
 }

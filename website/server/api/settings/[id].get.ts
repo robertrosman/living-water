@@ -1,10 +1,10 @@
-import { settingsSchema } from "../../../schemas/settings"
-import { getSettingsById } from "../../../utils/database"
+import { SettingsModel } from "../../../database/Settings"
 import { formatSettingsBody } from "../../../utils/formatSettingsBody"
 
 export default defineEventHandler(async event => {
     const { id } = await getRouterParams(event)
-    settingsSchema.shape.id.parse(id)
-    const settings = await getSettingsById(id)
-    return formatSettingsBody(settings)
+    const settings = await SettingsModel.get(id)
+    if (settings) {
+      return formatSettingsBody(settings)
+    }
   })
